@@ -21,6 +21,27 @@ class Essay_model extends CI_model {
 		return $scholar;
 	}
 
+
+	public function get_today(){
+		$date=date('Y-m-d');
+		// $this->db->where('created');
+		// $scholar=$this->db->get('essay');
+		$sql="SELECT * FROM essay WHERE date(create_date)='$date'";
+        return $this->db->query($sql);
+		// return $query;
+	}
+
+	public function get_total(){
+		$scholar=$this->db->get('essay');
+		return $scholar;
+	}
+
+	public function get_period(){
+		$this->db->where('nim');
+		$scholar=$this->db->get('essay');
+		return $scholar;
+	}
+
 	public function update_essay($key,$data){
 		$this->db->where('id',$key);
 		$this->db->set($data);

@@ -22,6 +22,9 @@ class Admin extends CI_Controller {
 		$data['link']='admin';
 		$data['add_head']='h_dash';
 		$data['add_js']='js_dash';
+		$data['today']=$this->Essay_model->get_today()->num_rows();
+		$data['period']=$this->Essay_model->get_period()->num_rows();
+		$data['total']=$this->Essay_model->get_total()->num_rows();
 		$this->load->view('Admin/dashboard',$data);
 	}
 	public function logout(){

@@ -43,7 +43,7 @@
 		</div>
 		<div class="details">
 			<div class="number">
-				 89
+				 <?=$total?>
 			</div>
 			<div class="desc">
 				 Total Submited
