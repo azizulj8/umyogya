@@ -45,8 +45,7 @@
 						<td><?=$row->created_date?></td>
 						<td><?=$row->status?></td>
 						<td>
-							<a href=""><i class="icon-edit"></i>Edit</a>&nbsp;
-							<a href=""><i class="icon-dust"></i>Delete</a>
+							<a href="<?=base_url('delete_form/'.$row->id)?>" onclick="return confirm('Are You Sure?')"><i class="icon-dust"></i>Delete</a>
 						</td>
 					</tr>
 					<?php

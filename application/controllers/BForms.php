@@ -68,4 +68,15 @@ class BForms extends CI_Controller {
 			// $status="berhasil";
 		}
     }
+
+	public function del(){
+		$this->Security_model->getsecurity();
+		$key=$this->uri->segment(2);
+		$this->db->where('id',$key);
+		$query=$this->db->get('bujsform');
+		if ($query->num_rows()>0) {
+			$this->Forms_model->delete($key);
+		}
+		redirect('bujsforms');
+	}
 }

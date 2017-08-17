@@ -61,6 +61,7 @@ $route['delete_scholar/(:any)'] = 'Scholar/del';
 $route['edit_scholar/(:any)'] = 'Scholar/edit';
 $route['edit_schedule/(:any)'] = 'Schedule/edit_schedule';
 $route['delete_schedule/(:any)'] = 'Schedule/del';
+$route['delete_form/(:any)'] = 'BForms/del';
 $route['svedit_scholar'] = 'Scholar/save_add';
 $route['save_users'] = 'Admin/save_add';
 $route['add_users'] = 'Admin/add_user';

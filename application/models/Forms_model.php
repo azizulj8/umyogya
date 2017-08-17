@@ -25,4 +25,9 @@ class Forms_model extends CI_model {
 		$this->db->set($data);
 		$this->db->insert($this->db->dbprefix .'bujsform');
 	}
+
+	public function delete($key){
+		$this->db->where('id',$key);
+		$this->db->delete('bujsform');
+	}
 }
