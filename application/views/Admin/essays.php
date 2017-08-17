@@ -49,8 +49,8 @@
 						<td><?=$row->keyword?></td>
 						<td><?=$row->file?></td>
 						<td>
-							<a href=""><i class="icon-edit"></i>Edit</a>&nbsp;
-							<a href=""><i class="icon-dust"></i>Delete</a>
+							<a href="<?=base_url('edit_essay/'.$row->id)?>"><i class="icon-edit"></i>Edit</a>&nbsp;
+							<a href="<?=base_url('delete_essay/'.$row->id)?>" onclick="return confirm('Are you Sure?')"><i class="icon-dust"></i>Delete</a>
 						</td>
 					</tr>
 					<?php

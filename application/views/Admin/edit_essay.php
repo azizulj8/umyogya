@@ -25,8 +25,8 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">NIM</label>
 						<div class="col-md-9">
-						<input name="nim" type="text" placeholder="NIM" class="form-control"/>
-						<input name="id" type="hidden" placeholder="NIM" class="form-control"/>
+						<input name="nim" value="<?=$nim?>" type="text" placeholder="NIM" class="form-control"/>
+						<input name="id" value="<?=$id?>" type="hidden" class="form-control"/>
 						<!-- <input name="nim" type="text" id="typeahead_example_1" name="typeahead_example_1" class="form-control"/> -->
 						</div>
 					</div>
@@ -42,58 +42,35 @@
                         </label>
                         <div class="col-md-9">
                             <select name="status" class="form-control">
-                                <option value="Reguler">Reguler</option>
-                                <option value="Continues">Continues</option>
-                                <option value="Exchange">Exchange</option>
+                                <option value="Reguler" <?php if($status == 'Reguler') echo 'selected';?>>Reguler</option>
+                                <option value="Continues" <?php if($status == 'Continues') echo 'selected';?>>Continues</option>
+                                <option value="Exchange" <?php if($status == 'Exchange') echo 'selected';?>>Exchange</option>
                             </select>
                         </div>
                     </div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Topik / Isu</label>
 						<div class="col-md-9">
-							<textarea name="topic" class="form-control" placeholder="Topik / Isu"></textarea>
+							<textarea name="topic" class="form-control" placeholder="Topik / Isu"><?=$topic?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Kawasan</label>
 						<div class="col-md-9">
-							<input name="area" type="text" class="form-control" placeholder="Kawasan / Area">
+							<input name="area" value="<?=$area?>" type="text" class="form-control" placeholder="Kawasan / Area">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Keyword</label>
 						<div class="col-md-9">
 							<!-- <input name="keyword" type="hidden" class="form-control select2_sample3"> -->
-                            <input name="keyword" type="text" class="form-control" placeholder="Contoh: Haji Agus Salim, Negara Berdaulat, Nasioanalisme"> <span class="required"> * pisahkan dengan koma (,)</span>
+                            <input name="keyword" type="text" class="form-control" placeholder="Contoh: Haji Agus Salim, Negara Berdaulat, Nasioanalisme" value="<?=$keyword?>"> <span class="required"> * pisahkan dengan koma (,)</span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Judul Skripsi</label>
 						<div class="col-md-9">
-							<input name="title" type="text" class="form-control" placeholder="Judul Skripsi">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="control-label col-md-3">Lampiran File</label>
-						<div class="col-md-9">
-							<div class="fileinput fileinput-new" data-provides="fileinput">
-								<div class="input-group input-large">
-									<div class="form-control uneditable-input span3" data-trigger="fileinput">
-										<i class="fa fa-file fileinput-exists"></i>&nbsp; <span class="fileinput-filename">
-										</span>
-									</div>
-									<span class="input-group-addon btn green-haze btn-file">
-									<span class="fileinput-new">
-									Select file </span>
-									<span class="fileinput-exists">
-									Change </span>
-									<input type="file" name="file">
-									</span>
-									<a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
-									Remove </a>
-								</div>
-							</div>
+							<input name="title" value="<?=$title?>" type="text" class="form-control" placeholder="Judul Skripsi">
 						</div>
 					</div>
 				</div>
@@ -101,7 +78,7 @@
 					<div class="row">
 						<div class="col-md-offset-3 col-md-9">
 							<button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
-							<button type="button" class="btn default">Cancel</button>
+							<a href="<?=base_url('essay')?>"><button type="button" class="btn default">Cancel</button></a>
 						</div>
 					</div>
 				</div>
