@@ -40,6 +40,43 @@ class Scholar extends CI_Controller {
 		$this->load->view('Admin/dashboard',$data);
 	}
 
+	public function edit(){
+		$this->Security_model->getsecurity();
+		$this->Security_model->is_admin();
+		$data['dashboard']="";
+		$data['masters']='class="active"';
+		$data['setting']="";
+		$data['content']='Admin/edit_scholar';
+		$data['head_bread']='Master';
+		$data['breadcrum']='Edit Scholars';
+		$data['link']='scholars';
+		$data['add_head']='ha_scholar';
+		$data['add_js']='jsa_scholar';
+		$data['nim'] = "";
+		$data['fullname'] = "";
+		$data['sex'] = "";
+		$data['birthdate'] = "";
+		$data['address'] = "";
+		$data['program'] = "";
+		$data['comp'] = "";
+		$key=$this->uri->segment(2);
+		// echo $key;
+		$this->db->where('nim',$key);
+		$query=$this->db->get('mhs');
+		if($query->num_rows()>0){	
+			foreach ($query->result() as $row) {
+				$data['nim'] = $row->nim;
+				$data['fullname'] = $row->fullname;
+				$data['sex'] = $row->sex;
+				$data['birthdate'] = $row->birthdate;
+				$data['address'] = $row->address;
+				$data['program'] = $row->program;
+				$data['comp'] = $row->komp;
+			}
+		}
+		$this->load->view('Admin/dashboard',$data);
+	}
+
 	public function save_add(){
 		$this->Security_model->getsecurity();
 		$this->Security_model->is_admin();
@@ -68,5 +105,16 @@ class Scholar extends CI_Controller {
 			// $query = $this->Scholar_model->get_data($key);
 		}
 		redirect('scholars');
+	}
+
+	public function del(){
+		$this->Security_model->getsecurity();
+		$key=$this->uri->segment(2);
+		$this->db->where('nim',$key);
+		$query=$this->db->get('mhs');
+		if ($query->num_rows()>0) {
+			$this->Scholar_model->delete($key);
+		}
+		redirect('scholar');
 	}
 }

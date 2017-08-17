@@ -25,4 +25,9 @@ class Scholar_model extends CI_model {
 		$this->db->set($data);
 		$this->db->insert($this->db->dbprefix .'mhs');
 	}
+
+	public function delete($key){
+		$this->db->where('nim',$key);
+		$this->db->delete('mhs');
+	}
 }

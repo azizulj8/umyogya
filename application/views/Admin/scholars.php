@@ -51,8 +51,8 @@
 						<td><?=$row->telp?></td>
 						<td><?=$row->email?></td>
 						<td>
-							<a href=""><i class="icon-edit"></i>Edit</a>&nbsp;
-							<a href=""><i class="icon-dust"></i>Delete</a>
+							<a href="<?=base_url('edit_scholar/'.$row->nim)?>"><i class="icon-edit"></i>Edit</a>&nbsp;
+							<a href="<?=base_url('delete_scholar/'.$row->nim)?>" onclick="return confirm('Are you Sure?')"><i class="icon-dust"></i>Delete</a>
 						</td>
 					</tr>
 					<?php
