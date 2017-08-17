@@ -33,8 +33,8 @@ class Admin extends CI_Controller {
 		$this->Security_model->getsecurity();
 		$this->Security_model->is_admin();
 		$data['dashboard']="";
-		$data['masters']='class="active"';
-		$data['setting']="";
+		$data['masters']="";
+		$data['setting']='class="active"';
 		$data['content']='Admin/users';
 		$data['head_bread']='Setting';
 		$data['breadcrum']='User List';
@@ -49,8 +49,8 @@ class Admin extends CI_Controller {
 		$this->Security_model->getsecurity();
 		$this->Security_model->is_admin();
 		$data['dashboard']="";
-		$data['masters']='class="active"';
-		$data['setting']="";
+		$data['masters']="";
+		$data['setting']='class="active"';
 		$data['content']='Admin/add_users';
 		$data['head_bread']='Setting';
 		$data['breadcrum']='Add New User';
@@ -60,22 +60,67 @@ class Admin extends CI_Controller {
 		$this->load->view('Admin/dashboard',$data);
 	}
 
+	public function edit_user(){
+		$this->Security_model->getsecurity();
+		$this->Security_model->is_admin();
+		$data['dashboard']="";
+		$data['masters']="";
+		$data['setting']='class="active"';
+		$data['content']='Admin/edit_users';
+		$data['head_bread']='Setting';
+		$data['breadcrum']='Edit User';
+		$data['link']='users';
+		$data['add_head']='ha_scholar';
+		$data['add_js']='jsa_scholar';
+		$key =$this->uri->segment(2);
+		// echo $key;
+		$this->db->where('username',$key);
+		$query=$this->db->get('users');
+		if($query->num_rows()>0){	
+			// echo $key;
+			foreach ($query->result() as $row) {
+				$data['username'] = $row->username;
+				$data['status'] = $row->status;
+				$data['admin'] = $row->admin;
+			}
+		}
+		$this->load->view('Admin/dashboard',$data);
+	}
+
 	public function save_add(){
 		$this->Security_model->getsecurity();
 		$this->Security_model->is_admin();
 		$key=$this->input->post('username');
 		$data=array(
 			'username' => $this->input->post('username'),
-			'passwd' => md5($this->input->post('password')),
-			'admin' => '1',
+			'passwd' => md5($this->input->post('passwd')),
+			'admin' => $this->input->post('admin'),
 			'status' => $this->input->post('status')
 			);
 		$query = $this->Users_model->get_data($key);
 		// $query = $this->db->get('mhs');
 		if ($query->num_rows()>0) {
+			if(empty($this->input->post('passwd'))){
+				$data=array(
+				'username' => $this->input->post('username'),
+				'admin' => $this->input->post('admin'),
+				'status' => $this->input->post('status')
+				);
+			}
 			$this->Users_model->update_users($key,$data);
 		}else{
 			$this->Users_model->getinsert($data);
+		}
+		redirect('users');
+	}
+
+	public function del(){
+		$this->Security_model->getsecurity();
+		$key=$this->uri->segment(2);
+		$this->db->where('username',$key);
+		$query=$this->db->get('users');
+		if ($query->num_rows()>0) {
+			$this->Users_model->delete($key);
 		}
 		redirect('users');
 	}

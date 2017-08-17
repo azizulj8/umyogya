@@ -25,4 +25,9 @@ class Users_model extends CI_model {
 		$this->db->set($data);
 		$this->db->insert($this->db->dbprefix .'users');
 	}
+
+	public function delete($key){
+		$this->db->where('username',$key);
+		$this->db->delete('users');
+	}
 }
